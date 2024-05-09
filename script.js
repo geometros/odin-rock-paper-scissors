@@ -17,3 +17,27 @@ function getUserChoice() {
 }
 
 console.log(getUserChoice())
+
+let playerScore = 0;
+let computerScore = 0;
+
+function playRound(playerChoice, computerChoice){
+    if (playerChoice == computerChoice){return 'Tie!'}
+    if (playerChoice == 'Rock'){
+        if (computerChoice == 'Scissors'){playerScore += 1;return 'Rock beats Scissors!'}
+        if (computerChoice == 'Paper'){computerScore += 1;return 'Paper beats Rock!'}
+    }
+    if (playerChoice == 'Paper'){
+        if (computerChoice == 'Rock'){playerScore += 1;return 'Paper beats Rock!'}
+        if (computerChoice == 'Scissors'){computerScore += 1;return 'Scissors beats Paper!'}
+    }
+    if (playerChoice == 'Scissors'){
+        if (computerChoice == 'Paper'){playerScore += 1;return 'Scissors beats Paper!'}
+        if (computerChoice == 'Rock'){computerScore += 1;return 'Rock beats Scissors!'}
+    }
+}
+
+const playerSelection = getUserChoice();
+const computerSelection = getComputerChoice();
+
+playRound(playerSelection, computerSelection)
