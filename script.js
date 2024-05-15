@@ -48,7 +48,7 @@ function playGame(){
     console.log(`Computer Score: ${computerScore}`)
 }
 
-for (let i=0;i<5;i++){
+while (true){
     playGame()
 }
 if (playerScore == computerScore){
