@@ -6,7 +6,6 @@ let computerScore = 0;
 
 function playRound(playerChoice, computerChoice){
 
-    
     let roundResult = null;
     let compChoiceDisplay = document.createElement('p');
     compChoiceDisplay.textContent = `Computer chooses ${computerChoice}`;
@@ -14,7 +13,7 @@ function playRound(playerChoice, computerChoice){
     playChoiceDisplay.textContent = `Player chooses ${playerChoice}`;
 
     if (playerChoice == computerChoice){
-        return 'Tie!'
+        roundResult = 'Tie!';
     }
     if (playerChoice == 'Rock'){
         if (computerChoice == 'Scissors'){playerScore += 1; roundResult = 'Rock beats Scissors!'}
@@ -30,12 +29,31 @@ function playRound(playerChoice, computerChoice){
     }
 
     const div = document.querySelector('#results')
-    div.innerHTML = roundResult;
+    let gameResult = '';
 
-    round += 1;
-    console.log(round)
-    if (round > roundsPerGame){
-        endGame()
+    
+    if (round == roundsPerGame){
+        if (playerScore == computerScore){
+            gameResult = 'The game was a tie.';
+        }
+        else if (playerScore > computerScore) {
+            gameResult = 'The Player wins!';
+        } 
+        else {
+            gameResult = 'The Computer wins!';
+        }
+    }
+    
+    div.innerHTML = `Round ${round} result: ` + roundResult + ` Computer Score: ${computerScore}, Player Score ${playerScore} ` + gameResult;
+    
+    if (round == roundsPerGame){
+        gameResult = '';
+        round = 1
+        playerScore = 0;
+        computerScore = 0;
+    } 
+    else {
+        round += 1;
     }
 }
 
@@ -53,16 +71,4 @@ function getComputerChoice() {
     if (x < 1/3) {return "Rock"}
     if (x > 2/3) {return "Paper"}
     else {return "Scissors"}
-}
-
-function endGame() {
-    if (playerScore == computerScore){
-        console.log('The game was a tie')
-    }
-    else if (playerScore > computerScore) {
-        console.log('The Player wins!')
-    } 
-    else {
-        console.log('The Computer wins!')
-    }
 }
